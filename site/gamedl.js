@@ -11,7 +11,7 @@ let SECTIONS = {
     max: new Section("number"),
     rated: new Section("check"),
     perfType: new Section("options"),
-    color: new Section("check"),
+    color: new Section("radio"),
     analyzed: new Section("check"),
     moves: new Section("check"),
     tags: new Section("check"),
@@ -34,6 +34,11 @@ let perfTypes={
     kingOfTheHill:"King of the Hill",
     racingKings:"Racing Kings",
     threeCheck:"Three Check"
+};
+
+let colorValues={
+    white:"White",
+    black:"Black"
 };
 
 function pad(num, size){
@@ -103,6 +108,33 @@ function createNumberInput(id,value){
     return inp
 }
 
+function createRadioInput(name,id,checked){
+    inp=document.createElement("input")
+    inp.setAttribute("type","radio")
+    inp.setAttribute("name",name)    
+    inp.setAttribute("id",id)    
+    if(checked) inp.setAttribute("checked","true")
+    return inp
+}
+
+function createRadio(name,values,def){
+    let inpdiv=document.createElement("div")    
+    for(let value in values){
+        l=cl(values[value])
+        inpdiv.appendChild(l)
+        radio=createRadioInput(name,value,value==def)
+        inpdiv.appendChild(radio)
+    }
+    return inpdiv
+}
+
+function collectRadio(name,values){
+    for(let value in values){
+        let e=ge(value)
+        if(e.checked) return value
+    }
+}
+
 function createOptionsInput(ids,value){
     let inpdiv=document.createElement("div")
     for(let id in ids){
@@ -165,6 +197,9 @@ function build(){
         if(kind=="options"){
             bdiv.appendChild(createOptionsInput(perfTypes,true))
         }
+        if(kind=="radio"){
+            bdiv.appendChild(createRadio("color",colorValues,"white"))
+        }
         addClass(bdiv,"sectionbody")
         sdiv.appendChild(hdiv)
         sdiv.appendChild(bdiv)
@@ -204,6 +239,11 @@ function createLink(){
             if(kind=="options"){            
                 if(ge(key).checked){
                     list.push(key+"="+collectOptions(perfTypes))
+                }
+            }
+            if(kind=="radio"){                            
+                if(ge(key).checked){
+                    list.push(key+"="+collectRadio("color",colorValues))
                 }
             }
         }        
