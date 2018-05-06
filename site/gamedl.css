@@ -1,0 +1,55 @@
+.apilink {
+    font-size: 20px;
+    padding: 5px;
+    margin: 5px;
+    background-color: #cfffcf;
+}
+
+.section {
+    background-color: #efefff;    
+}
+
+.sectionhead {
+    display: inline-block;
+    width: 150px;
+    background-color: azure;
+    padding: 3px;    
+    margin: 1px;
+    text-align: center;
+}
+
+.sectionbody {
+    display: inline-block;
+    width: 500px;
+    background-color: antiquewhite;
+    padding: 3px;
+    margin: 1px;
+    font-size: 10px;
+}
+
+.explain {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.note {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.control {
+    padding: 1px;
+    margin-top: 6px;
+}
+
+.createlink {
+    font-size: 20px;
+    background-color: #cfffcf;
+    margin-right: 10px;
+}
+
+.linktext {
+    width: 650px;
+    margin-top: 10px;
+    margin-left: 10px;
+}

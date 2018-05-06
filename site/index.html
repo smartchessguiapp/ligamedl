@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lichess Game Download Link Creator</title>
+    <link rel="stylesheet" href="gamedl.css">    
+</head>
+<body>
+    <div class="apilink">
+        <a href="https://lichess.org/api#operation/gamesExportUsername">Lichess game download API</a>
+    </div>    
+    <div id="sections">
+        <div class="section">
+            <div class="sectionhead">
+                <span class="explain">Sections</span><br><span class="note">check to include section in link</span>
+            </div>
+            <div class="sectionbody">
+                <span class="explain">Section values</span>
+            </div>
+        </div>
+    </div>
+    <div class="control">
+        <input type="button" value="Unset all perfs" onclick="setPerfs(false)">
+        <input type="button" value="Set all perfs" onclick="setPerfs(true)">
+    </div>    
+    <hr>
+    <div class="control">
+            <input type="button" class="createlink" value="Create link" onclick="createLink()">
+            <a id="link" href=""></a><br>
+            <input type="text" id="linktext" class="linktext">
+    </div>
+    
+    <script src="gamedl.js"></script>
+</body>
+</html>
