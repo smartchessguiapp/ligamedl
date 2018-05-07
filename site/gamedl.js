@@ -76,6 +76,8 @@ function createLink(){
     le = ge("link");
     le.href = url;
     le.innerHTML = url;
+    lte = ge("linktext");
+    lte.value = url;
 }
 
 function build(){
