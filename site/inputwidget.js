@@ -29,7 +29,7 @@ function dateInputStrToDate(dateInputStr){
 	let year = parseInt(parts[0]);
 	let month = parseInt(parts[1] - 1);
 	let day = parseInt(parts[2]);
-	return new Date(year,month,day);
+	return new Date(year, month, day);
 }
 
 // base class of custom elements
@@ -237,7 +237,7 @@ class CheckboxOptionsInput extends e{
 
 // div
 class Div extends e{
-    constructor(dateInputStr){
+    constructor(){
         super("div");        
     }
 }
