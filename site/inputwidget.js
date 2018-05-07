@@ -20,14 +20,14 @@ function dateToDateInputStr(dateObj){
 	let month = dateObj.getUTCMonth() + 1;
 	let day = dateObj.getUTCDate();
 	let year = dateObj.getUTCFullYear();
-	return "" + year + "-" + pad(month,2) + "-" + pad(day,2);
+	return "" + year + "-" + pad(month, 2) + "-" + pad(day, 2);
 }
 
 // convert date input value to date object
 function dateInputStrToDate(dateInputStr){
 	let parts = dateInputStr.split("-");
 	let year = parseInt(parts[0]);
-	let month = parseInt(parts[1]-1);
+	let month = parseInt(parts[1] - 1);
 	let day = parseInt(parts[2]);
 	return new Date(year,month,day);
 }
@@ -38,11 +38,13 @@ class e{
         this.e = ce(tag);
     }
 
+    // append element
     a(e){
         this.e.appendChild(e.e);
         return this;
     }
 
+    // append list of elements
     aa(es){
         for(let e of es){
             this.a(e);
@@ -95,7 +97,7 @@ class Label extends e{
 class DateInput extends e{
     constructor(dateInputStr){
         super("input");
-        this.sa("type","date");
+        this.sa("type", "date");
         this.sv(dateInputStr);
     }
 
@@ -108,7 +110,7 @@ class DateInput extends e{
 class TextInput extends e{
     constructor(initialValue){
         super("input");
-        this.sa("type","text");
+        this.sa("type", "text");
         this.sv(initialValue);
     }
 
@@ -121,8 +123,8 @@ class TextInput extends e{
 class CheckBox extends e{
     constructor(checked){
         super("input");
-        this.sa("type","checkbox");
-        if(checked) this.sa("checked","true");
+        this.sa("type", "checkbox");
+        if(checked) this.sa("checked", "true");
     }
 
     checked(){
@@ -158,9 +160,9 @@ class CheckBoxOptionInput extends e{
 class RadioOption extends e{
     constructor(name,checked){
         super("input");
-        this.sa("type","radio");
+        this.sa("type", "radio");
         this.sa("name",name);
-        if(checked) this.sa("checked","true");
+        if(checked) this.sa("checked", "true");
     }
 
     selected(){
