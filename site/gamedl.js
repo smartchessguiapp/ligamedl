@@ -35,7 +35,7 @@ let SECTIONS = {
     rated: new Section("Rated",new CheckBox(true),false),
     perfType: new Section("Rating category",new CheckboxOptionsInput(perfTypes),false),
     color: new Section("Color",new RadioInput("color",colorValues,"white"),false),
-    analyzed: new Section("Analyzed",new CheckBox(true),false),
+    analysed: new Section("Analysed",new CheckBox(true),false),
     moves: new Section("Moves",new CheckBox(true),false),
     tags: new Section("Tags",new CheckBox(true),false),
     clocks: new Section("Clocks",new CheckBox(true),false),
