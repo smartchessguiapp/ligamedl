@@ -63,9 +63,9 @@ let SECTIONS = {
     analysed: new Section("Analysed", new CheckBox(true), false),
     moves: new Section("Moves", new CheckBox(true), false),
     tags: new Section("Tags", new CheckBox(true), false),
-    clocks: new Section("Clocks", new CheckBox(true), false),
-    evals: new Section("Evals", new CheckBox(true), false),
-    opening: new Section("Opening", new CheckBox(true), false)
+    clocks: new Section("Clocks", new CheckBox(false), false),
+    evals: new Section("Evals", new CheckBox(false), false),
+    opening: new Section("Opening", new CheckBox(false), false)
 };
 
 function sectionsAsUrl(){
