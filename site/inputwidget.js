@@ -100,7 +100,7 @@ class DateInput extends e{
     }
 
     timestampMs(){
-        return dateInputStrToDate(this.v()).getTime() * 1000;
+        return dateInputStrToDate(this.v()).getTime();
     }
 }
 
