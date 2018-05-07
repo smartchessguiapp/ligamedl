@@ -32,6 +32,7 @@ let SECTIONS = {
     since: new Section("Since", new DateInput("2000-01-01"), false),
     until: new Section("Until", new DateInput(dateToDateInputStr(new Date())), false),
     max: new Section("Max", new TextInput("1000"), false),
+    vs: new Section("Opponent", new TextInput("DrDrunkenstein"), false),
     rated: new Section("Rated", new CheckBox(true), false),
     perfType: new Section("Rating category", new CheckboxOptionsInput(perfTypes), false),
     color: new Section("Color", new RadioInput("color",colorValues,"white"), false),
@@ -39,7 +40,8 @@ let SECTIONS = {
     moves: new Section("Moves", new CheckBox(true), false),
     tags: new Section("Tags", new CheckBox(true), false),
     clocks: new Section("Clocks", new CheckBox(true), false),
-    evals: new Section("Evals", new CheckBox(true), false)
+    evals: new Section("Evals", new CheckBox(true), false),
+    opening: new Section("Opening", new CheckBox(true), false)
 };
 
 function sectionsAsUrl(){
