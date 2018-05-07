@@ -32,6 +32,7 @@ function dateInputStrToDate(dateInputStr){
 	return new Date(year,month,day);
 }
 
+// base class of custom elements
 class e{
     constructor(tag){
         this.e = ce(tag);
@@ -39,24 +40,204 @@ class e{
 
     a(e){
         this.e.appendChild(e.e);
+        return this;
+    }
+
+    aa(es){
+        for(let e of es){
+            this.a(e);
+        }
+        return this;
     }
 
     // shorthand for setAttribute
     sa(key,value){
         this.e.setAttribute(key,value);
+        return this;
     }
 
     // shorthand for setting value
     sv(value){
         this.e.value = value;
+        return this;
+    }
+
+    // set inner html
+    h(value){
+        this.e.innerHTML = value;
+        return this;
+    }
+
+    // add class
+    ac(klass){
+        this.sa("class",klass);
+        return this;
+    }
+
+    // return value
+    v(){
+        return this.e.value;
     }
 }
 
+/////////////////////////////////////////////////////
+// custom elements
+
+// label
+class Label extends e{
+    constructor(value){
+        super("label");
+        this.h(value);
+    }
+}
+
+// date input
 class DateInput extends e{
     constructor(dateInputStr){
         super("input");
         this.sa("type","date");
         this.sv(dateInputStr);
     }
+
+    timestampMs(){
+        return dateInputStrToDate(this.v()).getTime() * 1000;
+    }
 }
 
+// text input
+class TextInput extends e{
+    constructor(initialValue){
+        super("input");
+        this.sa("type","text");
+        this.sv(initialValue);
+    }
+
+    getText(){
+        return this.e.value;
+    }
+}
+
+// checkbox
+class CheckBox extends e{
+    constructor(checked){
+        super("input");
+        this.sa("type","checkbox");
+        if(checked) this.sa("checked","true");
+    }
+
+    checked(){
+        return this.e.checked;
+    }
+
+    set(checked){
+        this.e.checked = checked;
+        return this;
+    }
+}
+
+// checkbox option
+class CheckBoxOptionInput extends e{
+    constructor(labelText,checked){
+        super("span");
+        this.a(new Label(labelText));
+        this.cb = new CheckBox(checked);
+        this.a(this.cb);
+    }
+
+    checked(){
+        return this.cb.checked();
+    }
+
+    set(checked){
+        this.cb.set(checked);
+        return this;
+    }
+}
+
+// radio option
+class RadioOption extends e{
+    constructor(name,checked){
+        super("input");
+        this.sa("type","radio");
+        this.sa("name",name);
+        if(checked) this.sa("checked","true");
+    }
+
+    selected(){
+        return this.e.checked;
+    }
+}
+
+// radio input
+class RadioInput extends e{
+    constructor(name,options,selected){
+        super("span")
+        this.options = {};
+        for(let key in options){
+            let displayName = options[key];
+            this.a(new Label(displayName));
+            let ro = new RadioOption(name, key==selected);
+            this.options[key] = ro;
+            this.a(ro);
+        }
+    }
+
+    selected(){
+        for(let key in this.options){
+            if(this.options[key].selected()) return key;
+        }
+    }
+}
+
+// struct to hold checkbox option data
+class CheckboxOption{
+    constructor(displayName, checked){        
+        this.displayName = displayName;
+        this.checked = checked;
+    }
+}
+
+// options input
+class CheckboxOptionsInput extends e{
+    constructor(options){
+        super("span")
+        this.options = {};
+        for(let key in options){
+            let co = options[key];
+            let coi = new CheckBoxOptionInput(co.displayName, co.checked);
+            this.options[key] = coi;
+            this.a(coi);
+        }
+    }
+
+    set(key, checked){
+        this.options[key].set(checked);
+    }
+
+    setAll(checked){
+        for(let key in this.options){
+            this.options[key].set(checked);
+        }
+    }
+
+    getAllChecked(){
+        let list = [];
+
+        for(let key in this.options){
+            if(this.options[key].checked()){
+                list.push(key);
+            }
+        }
+
+        return list;
+    }
+}
+
+// div
+class Div extends e{
+    constructor(dateInputStr){
+        super("div");        
+    }
+}
+
+/////////////////////////////////////////////////////
